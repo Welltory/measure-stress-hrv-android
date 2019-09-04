@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Welltory DDS Demo</string>
+    <string name="measurementButton">Measurement</string>
+    <string name="pressButtonToStart">Press button to start measurement</string>
+</resources>
