@@ -12,4 +12,10 @@
     <string name="stressLevelGood">This is good stress</string>
     <string name="stressLevelAverage">This is average stress</string>
     <string name="stressLevelBad">This is bad stress</string>
+    <string name="energy">Energy</string>
+    <string name="productivity">Productivity</string>
+    <string name="rmssd">rMSSD</string>
+    <string name="sdnn">SDNN</string>
+    <string name="percentValue">%.0f%%</string>
+    <string name="msValue">%.0f ms</string>
 </resources>

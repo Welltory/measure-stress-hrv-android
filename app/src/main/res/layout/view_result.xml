@@ -8,16 +8,21 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
-    <Button
+    <TextView
         android:id="@+id/details"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="4dp"
         android:layout_width="wrap_content"
+        android:textAllCaps="true"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="4dp"
         android:background="@android:color/transparent"
+        android:fontFamily="@font/proxima_bold"
         android:letterSpacing="0.05"
         android:text="@string/details"
         android:textColor="@color/grey_6_40"
         android:textSize="11sp"
-        android:fontFamily="@font/proxima_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SmallSp" />
@@ -43,12 +48,13 @@
         app:srcCompat="@drawable/ic_welltory" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -78,6 +84,7 @@
             android:background="@drawable/bg_tag"
             android:fontFamily="@font/proxima_bold"
             android:gravity="center"
+            android:layout_marginTop="4dp"
             android:textColor="@color/white"
             android:textSize="16sp"
             tools:text="88%" />
@@ -87,12 +94,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="14dp"
             android:fontFamily="@font/proxima_reg"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="12sp"
             tools:text="This is a good stress" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/extraParams" />
+
+    <LinearLayout
+        android:id="@+id/extraParams"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

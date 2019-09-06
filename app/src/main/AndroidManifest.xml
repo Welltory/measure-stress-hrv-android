@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ResultActivity" />
+        <activity
+            android:name=".ResultActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

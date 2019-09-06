@@ -3,8 +3,10 @@
     <color name="colorPrimary">#37373A</color>
     <color name="colorPrimaryDark">#37373A</color>
     <color name="colorAccent">#FF0941</color>
-    <color name="black">#151A22</color>
+    <color name="black_card">#151A22</color>
+    <color name="black">#3A3F4A</color>
     <color name="grey_6_40">#66C0C3CD</color>
+    <color name="white_70">#B3FFFFFF</color>
     <color name="white">#fff</color>
     <color name="green">#03CB34</color>
     <color name="red">#FF003F</color>

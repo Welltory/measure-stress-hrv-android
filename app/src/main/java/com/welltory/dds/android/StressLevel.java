@@ -6,10 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -23,7 +20,6 @@ import androidx.annotation.Nullable;
 public class StressLevel extends View {
 
     private Bitmap bgBitmap;
-    private Path path = new Path();
     private Paint bitmapPaint = new Paint();
     private Bitmap arrowBitmap;
 
@@ -60,6 +56,7 @@ public class StressLevel extends View {
             angle = typedArray.getFloat(R.styleable.StressLevel_sl_angle, 0);
             typedArray.recycle();
         }
+        bitmapPaint.setAntiAlias(true);
         bgBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.image_stress_level);
         arrowBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.image_stress_arrow);
     }
@@ -68,7 +65,6 @@ public class StressLevel extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawBitmap(bgBitmap, (getWidth() - bgBitmap.getWidth()) / 2f, getHeight() - bgBitmap.getHeight(), bitmapPaint);
-        path.reset();
         canvas.save();
         canvas.rotate(angle, getWidth() / 2, getHeight());
         canvas.drawBitmap(arrowBitmap, 0, getHeight() - arrowBitmap.getHeight() / 2f, bitmapPaint);
