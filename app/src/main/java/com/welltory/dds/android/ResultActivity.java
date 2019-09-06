@@ -137,9 +137,9 @@ public class ResultActivity extends AppCompatActivity {
     private void addExtraParamsViews(Intent intent) {
         ArrayList<ExtraParam> extraParams = new ArrayList<>();
         extraParams.add(new ExtraParam(getString(R.string.energy),
-                getString(R.string.percentValue, intent.getFloatExtra(EXTRA_ENERGY, 0)*100)));
+                getString(R.string.percentValue, intent.getFloatExtra(EXTRA_ENERGY, 0) * 100)));
         extraParams.add(new ExtraParam(getString(R.string.productivity),
-                getString(R.string.percentValue, intent.getFloatExtra(EXTRA_PRODUCTIVITY, 0)*100)));
+                getString(R.string.percentValue, intent.getFloatExtra(EXTRA_PRODUCTIVITY, 0) * 100)));
         extraParams.add(new ExtraParam(getString(R.string.rmssd),
                 getString(R.string.msValue, intent.getFloatExtra(EXTRA_RMSSD, 0))));
         extraParams.add(new ExtraParam(getString(R.string.sdnn),

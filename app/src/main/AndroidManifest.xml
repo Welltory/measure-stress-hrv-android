@@ -21,7 +21,8 @@
 
         <activity
             android:name=".ResultActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>
