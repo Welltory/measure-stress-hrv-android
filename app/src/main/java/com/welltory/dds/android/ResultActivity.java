@@ -45,7 +45,8 @@ public class ResultActivity extends AppCompatActivity {
         findViewById(R.id.help).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://support.welltory.com/article/show/68986-how-to-use-your-measurement-results"));
+                startActivity(intent);
             }
         });
         parseIntent();
