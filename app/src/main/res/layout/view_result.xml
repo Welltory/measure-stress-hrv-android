@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_result_widget"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <Button
+        android:id="@+id/details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:letterSpacing="0.05"
+        android:text="@string/details"
+        android:textColor="@color/grey_6_40"
+        android:textSize="11sp"
+        android:fontFamily="@font/proxima_bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SmallSp" />
+
+    <ImageView
+        android:id="@+id/help"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="4dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_help" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_welltory" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.welltory.dds.android.StressLevel
+            android:id="@+id/stressLevel"
+            android:layout_width="145dp"
+            android:layout_height="78dp"
+            android:layout_gravity="center"
+            app:sl_angle="180" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="-32dp"
+            android:fontFamily="@font/proxima_bold"
+            android:text="@string/stress"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/stressLevelPercent"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bg_tag"
+            android:fontFamily="@font/proxima_bold"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            tools:text="88%" />
+
+        <TextView
+            android:id="@+id/stressLevelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/proxima_reg"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            tools:text="This is a good stress" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

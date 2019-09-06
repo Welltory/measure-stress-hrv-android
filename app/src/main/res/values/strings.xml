@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">Welltory DDS Demo</string>
-    <string name="measurementButton">Measurement</string>
+    <string name="measurementButton">Measure now</string>
     <string name="pressButtonToStart">Press button to start measurement</string>
+    <string name="startTitle">Track your stress</string>
+    <string name="startSubtitle">This new feature allows you to measure your stress levels so you can make informed decisions about how to improve your work performance.</string>
+    <string name="stressMeasurementApp">#1 Stress Measurement App</string>
+    <string name="details">details</string>
+    <string name="stress">Stress</string>
+    <string name="whatsNext">What\'s next?</string>
+    <string name="whatsNextText">Chronic stress has negative effects on your health. Your participation helps us to evaluate the scope of the problem. Thanks for using our new feature.</string>
+    <string name="stressLevelGood">This is good stress</string>
+    <string name="stressLevelAverage">This is average stress</string>
+    <string name="stressLevelBad">This is bad stress</string>
 </resources>
