@@ -145,6 +145,7 @@ public class ResultActivity extends AppCompatActivity {
         extraParams.add(new ExtraParam(getString(R.string.sdnn),
                 getString(R.string.msValue, intent.getFloatExtra(EXTRA_SDNN, 0))));
 
+        extraParamsContainer.removeAllViews();
         for (ExtraParam extraParam : extraParams) {
             View view = LayoutInflater.from(this).inflate(R.layout.view_extra_param, extraParamsContainer, false);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT);
