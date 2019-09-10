@@ -24,13 +24,15 @@ public class WelltoryMeasurementUtils {
         try {
             String encodedParams = URLEncoder.encode(params, "UTF-8");
             intent = new Intent(Intent.ACTION_VIEW, Uri.parse("welltory://branch/Measurement/Start/" + encodedParams));
+            if (intent.resolveActivity(activity.getPackageManager()) == null) {
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.welltory.client.android&referrer=" + encodedParams));
+            }
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        if (intent == null || intent.resolveActivity(activity.getPackageManager()) == null) {
-            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://welltory.onelink.me/2180424117/bf497b9?" + params));
+        if (intent != null) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            activity.startActivity(intent);
         }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        activity.startActivity(intent);
     }
 }
