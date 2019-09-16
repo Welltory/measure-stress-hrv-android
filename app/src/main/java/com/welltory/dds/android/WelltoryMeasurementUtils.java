@@ -31,7 +31,7 @@ public class WelltoryMeasurementUtils {
             e.printStackTrace();
         }
         if (intent != null) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             activity.startActivity(intent);
         }
     }
