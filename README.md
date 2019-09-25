@@ -1,0 +1,262 @@
+# Welltory Integration Android Demo
+
+<p>
+  <p style="color:red; text-align:center;">Тут может стоит flow на Android экранах</p>
+  <img src="/screens/Frame.png?raw=true" alt="Welltory flow">
+</p>
+
+This demo app is intended for people who want to integrate with Welltory app to collect stress, energy and other HRV data about their users.
+Demo app shows how your app can work with Welltory app.
+This integration is free and it’s created to help you add value for your users who use Welltory. [Read more here](#install)
+
+To become integration partner - [apply here](https://welltory.typeform.com/to/epJ3PR)
+
+
+Welltory is an app that measures people’s HRV with just a smartphone camera to calculate their stress and energy levels. You can send out users to our app and get them back with measurement results.
+Welltory integration will allow you to collect data of the following parameters:
+
+* Stress (Welltory's proprietary algorithm, trained on millions of measurements)
+* Energy (Welltory's proprietary algorithm, trained on millions of measurements)
+* Productivity index (Welltory's proprietary algorithm, trained on millions of measurements)
+* RMSSD index
+* SDNN index
+* Total power
+
+We made this demo to show you:
+* how the user will be navigated to the App Store,
+* the process of taking a measurement,
+* a request for sharing,
+* the return to the application,
+* an example of the presentation of the results,
+and also the source code of the integration.
+
+Continue reading for installation.
+
+### Table of Contents
+1. [How to install](#install)
+   1. [Requirements](#requirements)
+   2. [Installation guide](#guide)
+2. [Example usage](#usage)
+3. [Integration](#integration)
+4. [Measurement request](#request)
+   1. [Measurement request link and parameters](#link)
+5. [Stress results overview](#result)
+   1. [Configure your app to add it the list of approved domains](#configure_domain)
+   2. [Configure your website to host the 'apple-app-site-association' file](#configure_aasa)
+6. [Stress results processing](#result_processing)
+7. [Demo Applications](#demo)
+8. [Questions](#questions)
+9. [License and author info](#license)
+
+# How to install <a name="install"></a>
+
+### Requirements: <a name="requirements"></a>
+
+
+* XCode 10.0 or later
+* Swift 4.2 or later
+
+No additional tools required.
+
+### Installation guide: <a name="guide"></a>
+
+<p style="color:red; text-align:center;">Шаги запуска</p>
+
+* Clone the repository master brunch using ``` git clone https://github.com/Welltory/Android-DDS-Example.git ```
+* ...
+* Run the project
+
+<p style="color:red; text-align:center;">Как пользоваться demo аппкой - Нужно перечитать и поправить (возможно заменить скрины) </p>
+
+# Example usage <a name="usage"></a>
+
+1. In the DDS Example application press "Measure now" button to start measurement
+<p>
+  <img src="/screens/screen_1.png?raw=true" width="200" alt="Measure now">
+</p>
+
+2. Welltory application will launch and automatically starts a measurement
+<p>
+    <img src="/screens/screen_2.png?raw=true" width="200" alt="Measurement process">
+</p>
+
+3. After measurement complete, results sharing window will appear
+<p>
+  <img src="/screens/screen_3.png?raw=true" width="200" alt="Measurement result">
+</p>
+
+4. After user presses "ok, let's do it" button measurement results and user controll pull back to the DDS application
+<p>
+  <img src="/screens/screen_4.png?raw=true" width="200" alt="Presenting result">
+</p>
+
+
+# Integration <a name="integration"></a>
+
+Welltory doesn't provide any integration SDKs, all applications interaction are performed with universal links intents.
+
+**You should start your integration filling out an [Integration Request Form](https://welltory.typeform.com/to/epJ3PR).**
+
+Please contact our support team if you have any questions [Welltory Help Center](https://support.welltory.com/content).
+
+
+# Measurement request <a name="request"></a>
+
+<p style="color:red; text-align:center;">Как стартовать замер и правильные линки на замер - проверь все ли ok</p>
+
+To start a measurement you should send URI intent
+
+Important: The intent link changes depending on whether Welltory is installed or not.
+
+
+### Measurement request link <a name="link"></a>
+
+For the very first measurement from your application, launch the following link: [https://play.google.com/store/apps/details?id=com.welltory.client.android&referrer=<encoded_params>](#)
+
+Where the **referrer** contains:
+
+* source - Your application name. Will be displayed in Welltory interfaces.
+* callback - The application identifier, to pass result data
+* params - [optionally] list of parameters to pass with measurement results
+
+`Important: we DON’T save parameters in a database`\
+`Important: Activity should have android:exported=”true” configuration`
+
+
+It will take the user to the measurement screen in case Welltory is installed, or redirect them to Google Play page to install it.
+
+Example:
+[https://play.google.com/store/apps/details?id=com.welltory.client.android&referrer=source%3DDemoApp%26callback%3Dcom.welltory.dds.android%2Fcom.welltory.dds.android.MainActivity%26param1%3Dtest_param1](#)
+
+--------
+
+Every following measurement request should be done using direct Welltory link: [welltory://branch/Measurement/Start/<utf_8_encoded_params>](#)
+
+
+Where the **utf_8_encoded_params** contains:
+
+* source - Your application name. Will be displayed in Welltory interfaces.
+* callback - The application identifier, to pass result data
+* params - [optionally] list of parameters to pass with measurement results
+
+`Important: we DON’T save parameters in a database`\
+`Important: Activity should have android:exported=”true” configuration`
+
+Example: [welltory://branch/Measurement/Start/source%3DDemoApp%26callback%3Dcom.welltory.dds.android%2Fcom.welltory.dds.android.MainActivity%26param1%3Dtest_param1](#)
+
+`Important: Execute Intent with  FLAG_ACTIVITY_NEW_TASK and FLAG_ACTIVITY_CLEAR_TOP flags, to avoid a duplication of partner’s application instances.`
+
+Examples:
+
+```java
+
+String callBackActivity = String.format(Locale.getDefault(), "%s/%s",
+       activity.getPackageName(), activity.getClass().getName());
+String params = String.format(Locale.getDefault(),
+       "source=%s&callback=%s&param1=test_param1", "DemoApp", callBackActivity);
+Intent intent = null;
+try {
+   String encodedParams = URLEncoder.encode(params, "UTF-8");
+   intent = new Intent(Intent.ACTION_VIEW, Uri.parse("welltory://branch/Measurement/Start/" + encodedParams));
+   if (intent.resolveActivity(activity.getPackageManager()) == null) {
+       intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.welltory.client.android&referrer=" + encodedParams));
+   }
+} catch (UnsupportedEncodingException e) {
+   e.printStackTrace();
+}
+if (intent != null) {
+   intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+   activity.startActivity(intent);
+}
+
+
+```
+
+
+# Stress results overview <a name="result"></a>
+
+After the user data has been processed, Welltory application it will use your **callback** url to send measurement results to your application.
+Welltory will append the following parameters to your callback url:
+
+
+| name | type | description |
+| ------ | ------ | ------ |
+| stress | Float&nbsp;(0.0&nbsp;-&nbsp;1.0) | user's stress % |
+| energy | Float (0.0 - 1.0) | user's energy % |
+| productivity | Float (0.0 - 1.0) | user's productivity % |
+| rmssd | Float | user's rmssd index |
+| sdnn | Float | user's sdnn index |
+| power | Float | user's power index |
+| token | String | Measurement share token. It allows to open a measurement webpage https://app.welltory.com/share-measurement?token=<token> |
+| productivity_c | String | Productivity parameter interpretation color |
+| energy_c | String | Energy parameter interpretation color |
+| stress_c | String | Stress parameter interpretation color |
+
+Colours:
+* green - Good
+* yellow - Normal
+* red - Bad
+* unknown - Unknown
+
+# Stress results processing <a name="result_processing"></a>
+
+After `startActivity` is called, partner’s application should expect for results in `onNewIntent` or `onCreate` function (in case Android kills application's activity). \
+Measurement results could be fetched from the Intent by calling `Intent.getFloatExta`
+
+Example:
+```java
+@Override
+protected void onNewIntent(Intent intent) {
+	super.onNewIntent(intent);
+	resultView.setText(parseIntent(intent));
+}
+
+private String parseIntent(Intent data) {
+	if (data != null && data.hasExtra("stress")) {
+    	return String.format(Locale.getDefault(), "productivity=%s\nrmssd=%s\nenergy=%s\npower=%s\nstress=%s\nsdnn=%s",
+            	data.getFloatExtra("productivity", -1),
+            	data.getFloatExtra("rmssd", -1),
+            	data.getFloatExtra("energy", -1),
+            	data.getFloatExtra("power", -1),
+            	data.getFloatExtra("stress", -1),
+            	data.getFloatExtra("sdnn", -1));
+	} else {
+    	return null;
+	}
+}
+```
+
+# Demo Applications <a name="demo"></a>
+This repository contains a working Demo DDS application.
+
+
+# Questions? <a name="questions"></a>
+If you have questions about the partnership, please visit our help center [Welltory Help Center](https://support.welltory.com/content).
+
+# License and author info <a name="license"></a>
+
+```
+Welltory Integration Android Example
+
+The MIT License (MIT)
+
+Copyright (c) 2019 Welltory Integration iOS Demo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+```
