@@ -1,7 +1,6 @@
 # Welltory Integration Android Demo
 
 <p>
-  <p style="color:red; text-align:center;">Тут может стоит flow на Android экранах</p>
   <img src="/screens/Frame.png?raw=true" alt="Welltory flow">
 </p>
 
@@ -52,21 +51,15 @@ Continue reading for installation.
 
 ### Requirements: <a name="requirements"></a>
 
-
-* XCode 10.0 or later
-* Swift 4.2 or later
+* Android Studio 3.5 or later
 
 No additional tools required.
 
 ### Installation guide: <a name="guide"></a>
 
-<p style="color:red; text-align:center;">Шаги запуска</p>
-
 * Clone the repository master brunch using ``` git clone https://github.com/Welltory/Android-DDS-Example.git ```
-* ...
+* Open project directory with the Android Studio 3.5+
 * Run the project
-
-<p style="color:red; text-align:center;">Как пользоваться demo аппкой - Нужно перечитать и поправить (возможно заменить скрины) </p>
 
 # Example usage <a name="usage"></a>
 
@@ -93,7 +86,7 @@ No additional tools required.
 
 # Integration <a name="integration"></a>
 
-Welltory doesn't provide any integration SDKs, all applications interaction are performed with universal links intents.
+Welltory doesn't provide any integration SDKs, all applications interaction are performed with intents.
 
 **You should start your integration filling out an [Integration Request Form](https://welltory.typeform.com/to/epJ3PR).**
 
@@ -102,8 +95,6 @@ Please contact our support team if you have any questions [Welltory Help Center]
 
 # Measurement request <a name="request"></a>
 
-<p style="color:red; text-align:center;">Как стартовать замер и правильные линки на замер - проверь все ли ok</p>
-
 To start a measurement you should send URI intent
 
 Important: The intent link changes depending on whether Welltory is installed or not.
@@ -111,13 +102,13 @@ Important: The intent link changes depending on whether Welltory is installed or
 
 ### Measurement request link <a name="link"></a>
 
-For the very first measurement from your application, launch the following link: [https://play.google.com/store/apps/details?id=com.welltory.client.android&referrer=<encoded_params>](#)
+For the very first measurement from your application, launch the following link: [https://play.google.com/store/apps/details?id=com.welltory.client.android&referrer=<utf_8_encoded_params>](#)
 
 Where the **referrer** contains:
 
 * source - Your application name. Will be displayed in Welltory interfaces.
-* callback - The application identifier, to pass result data
-* params - [optionally] list of parameters to pass with measurement results
+* callback - The application package and activity name divided with "/" symbol, to pass result data. ```com.welltory.dds.android/com.welltory.dds.android.MainActivity```, for example
+* other parameters - [optionally] list of parameters to pass with measurement results. If you want to pass your own parameters to the measurement result, you should add them as query parameters to the URI
 
 `Important: we DON’T save parameters in a database`\
 `Important: Activity should have android:exported=”true” configuration`
@@ -136,8 +127,8 @@ Every following measurement request should be done using direct Welltory link: [
 Where the **utf_8_encoded_params** contains:
 
 * source - Your application name. Will be displayed in Welltory interfaces.
-* callback - The application identifier, to pass result data
-* params - [optionally] list of parameters to pass with measurement results
+* callback - The application package and activity name divided with "/" symbol, to pass result data. ```com.welltory.dds.android/com.welltory.dds.android.MainActivity```, for example
+* other parameters - [optionally] list of parameters to pass with measurement results. If you want to pass your own parameters to the measurement result, you should add them as query parameters to the URI
 
 `Important: we DON’T save parameters in a database`\
 `Important: Activity should have android:exported=”true” configuration`
@@ -175,8 +166,8 @@ if (intent != null) {
 
 # Stress results overview <a name="result"></a>
 
-After the user data has been processed, Welltory application it will use your **callback** url to send measurement results to your application.
-Welltory will append the following parameters to your callback url:
+After the user data has been processed, Welltory application will use your **callback** activity to send measurement results to your application.
+Welltory will put the following parameters into intent extras:
 
 
 | name | type | description |
@@ -191,6 +182,7 @@ Welltory will append the following parameters to your callback url:
 | productivity_c | String | Productivity parameter interpretation color |
 | energy_c | String | Energy parameter interpretation color |
 | stress_c | String | Stress parameter interpretation color |
+| other parameters | String | Your custom parameters with keys and values you passed with URI
 
 Colours:
 * green - Good
