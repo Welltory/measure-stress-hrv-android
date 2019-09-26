@@ -232,7 +232,7 @@ Welltory Integration Android Example
 
 The MIT License (MIT)
 
-Copyright (c) 2019 Welltory Integration iOS Demo
+Copyright (c) 2019 Welltory Integration Android
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
