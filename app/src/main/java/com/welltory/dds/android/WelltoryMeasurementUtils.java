@@ -10,8 +10,7 @@ import java.util.Locale;
 
 /**
  * Created: Belozerov Sergei
- * E-mail: belozerow@gmail.com
- * Company: THE RED ONE
+ * Company: Welltory Inc.
  * Date: 2019-09-06
  */
 public class WelltoryMeasurementUtils {

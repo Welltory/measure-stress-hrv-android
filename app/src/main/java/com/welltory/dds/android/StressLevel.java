@@ -13,8 +13,7 @@ import androidx.annotation.Nullable;
 
 /**
  * Created: Belozerov Sergei
- * E-mail: belozerow@gmail.com
- * Company: THE RED ONE
+ * Company: Welltory Inc.
  * Date: 2019-09-05
  */
 public class StressLevel extends View {
