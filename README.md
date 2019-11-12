@@ -1,33 +1,29 @@
 # Welltory Integration Android Demo
 
 <p>
-  <p style="color:red; text-align:center;">Тут может стоит flow на Android экранах</p>
-  <img src="/screens/Frame.png?raw=true" alt="Welltory flow">
+  <img src="/screens/Frame.jpg?raw=true" alt="Welltory flow">
 </p>
 
-This demo app is intended for people who want to integrate with Welltory app to collect stress, energy and other HRV data about their users.
-Demo app shows how your app can work with Welltory app.
-This integration is free and it’s created to help you add value for your users who use Welltory. [Read more here](#install)
+This demo app is intended for people who want to integrate with Welltory app to collect stress, energy and other HRV data about their users. The Demo app demonstrates how your app can work with Welltory. This integration is free and it’s created to help you add value for your users who already use Welltory.  [Read more here](#install)
 
-To become integration partner - [apply here](https://welltory.typeform.com/to/epJ3PR)
+To become an integration partner - [apply here](https://welltory.typeform.com/to/epJ3PR)
 
 
-Welltory is an app that measures people’s HRV with just a smartphone camera to calculate their stress and energy levels. You can send out users to our app and get them back with measurement results.
-Welltory integration will allow you to collect data of the following parameters:
+Welltory is an app that measures people’s HRV with just a smartphone camera to calculate their stress and energy levels. You can redirect users to our app and direct them back to your app with measurement results. Welltory integration will allow you to collect data of the following parameters:
 
-* Stress (Welltory's proprietary algorithm, trained on millions of measurements)
-* Energy (Welltory's proprietary algorithm, trained on millions of measurements)
-* Productivity index (Welltory's proprietary algorithm, trained on millions of measurements)
+* Stress (Welltory's proprietary algorithm trained on millions of measurements)
+* Energy (Welltory's proprietary algorithm trained on millions of measurements)
+* Productivity index (Welltory's proprietary algorithm trained on millions of measurements)
 * RMSSD index
 * SDNN index
 * Total power
 
-We made this demo to show you:
-* how the user will be navigated to the App Store,
-* the process of taking a measurement,
-* a request for sharing,
-* the return to the application,
-* an example of the presentation of the results,
+This demo is to demonstrate:
+* how the user is navigated from your app to the App Store,
+* how the measurement is taken,
+* a request asking the user to share the results of the measurement with your app,
+* the return to your application,
+* a sample of results presentation,
 and also the source code of the integration.
 
 Continue reading for installation.
@@ -52,57 +48,49 @@ Continue reading for installation.
 
 ### Requirements: <a name="requirements"></a>
 
-
-* XCode 10.0 or later
-* Swift 4.2 or later
+* Android Studio 3.5 or later
 
 No additional tools required.
 
 ### Installation guide: <a name="guide"></a>
 
-<p style="color:red; text-align:center;">Шаги запуска</p>
-
-* Clone the repository master brunch using ``` git clone https://github.com/Welltory/Android-DDS-Example.git ```
-* ...
+* Clone the repository master brunch using ``` git clone https://github.com/Welltory/measure-stress-hrv-android.git ```
+* Open project directory with the Android Studio 3.5+
 * Run the project
-
-<p style="color:red; text-align:center;">Как пользоваться demo аппкой - Нужно перечитать и поправить (возможно заменить скрины) </p>
 
 # Example usage <a name="usage"></a>
 
 1. In the DDS Example application press "Measure now" button to start measurement
 <p>
-  <img src="/screens/screen_1.png?raw=true" width="200" alt="Measure now">
+  <img src="/screens/screen_1.jpg?raw=true" width="200" alt="Measure now">
 </p>
 
 2. Welltory application will launch and automatically starts a measurement
 <p>
-    <img src="/screens/screen_2.png?raw=true" width="200" alt="Measurement process">
+    <img src="/screens/screen_2.jpg?raw=true" width="200" alt="Measurement process">
 </p>
 
 3. After measurement complete, results sharing window will appear
 <p>
-  <img src="/screens/screen_3.png?raw=true" width="200" alt="Measurement result">
+  <img src="/screens/screen_3.jpg?raw=true" width="200" alt="Measurement result">
 </p>
 
 4. After user presses "ok, let's do it" button measurement results and user controll pull back to the DDS application
 <p>
-  <img src="/screens/screen_4.png?raw=true" width="200" alt="Presenting result">
+  <img src="/screens/screen_4.jpg?raw=true" width="200" alt="Presenting result">
 </p>
 
 
 # Integration <a name="integration"></a>
 
-Welltory doesn't provide any integration SDKs, all applications interaction are performed with universal links intents.
+Welltory doesn't provide any integration SDKs, all applications interaction are performed with intents.
 
 **You should start your integration filling out an [Integration Request Form](https://welltory.typeform.com/to/epJ3PR).**
 
-Please contact our support team if you have any questions [Welltory Help Center](https://support.welltory.com/content).
+Please send us a live chat message [on our website](https://welltory.com/) if you have any questions.
 
 
 # Measurement request <a name="request"></a>
-
-<p style="color:red; text-align:center;">Как стартовать замер и правильные линки на замер - проверь все ли ok</p>
 
 To start a measurement you should send URI intent
 
@@ -111,13 +99,13 @@ Important: The intent link changes depending on whether Welltory is installed or
 
 ### Measurement request link <a name="link"></a>
 
-For the very first measurement from your application, launch the following link: [https://play.google.com/store/apps/details?id=com.welltory.client.android&referrer=<encoded_params>](#)
+For the very first measurement from your application, launch the following link: [https://play.google.com/store/apps/details?id=com.welltory.client.android&referrer=<utf_8_encoded_params>](#)
 
 Where the **referrer** contains:
 
 * source - Your application name. Will be displayed in Welltory interfaces.
-* callback - The application identifier, to pass result data
-* params - [optionally] list of parameters to pass with measurement results
+* callback - The application package and activity name divided with "/" symbol, to pass result data. ```com.welltory.dds.android/com.welltory.dds.android.MainActivity```, for example
+* other parameters - [optionally] list of parameters to pass with measurement results. If you want to pass your own parameters to the measurement result, you should add them as query parameters to the URI
 
 `Important: we DON’T save parameters in a database`\
 `Important: Activity should have android:exported=”true” configuration`
@@ -126,7 +114,7 @@ Where the **referrer** contains:
 It will take the user to the measurement screen in case Welltory is installed, or redirect them to Google Play page to install it.
 
 Example:
-[https://play.google.com/store/apps/details?id=com.welltory.client.android&referrer=source%3DDemoApp%26callback%3Dcom.welltory.dds.android%2Fcom.welltory.dds.android.MainActivity%26param1%3Dtest_param1](#)
+[https://play.google.com/store/apps/details?id=com.welltory.client.android&referrer=source%3DYourApp%26callback%3Dcom.welltory.dds.android%2Fcom.welltory.dds.android.MainActivity%26param1%3Dtest_param1](#)
 
 --------
 
@@ -136,13 +124,13 @@ Every following measurement request should be done using direct Welltory link: [
 Where the **utf_8_encoded_params** contains:
 
 * source - Your application name. Will be displayed in Welltory interfaces.
-* callback - The application identifier, to pass result data
-* params - [optionally] list of parameters to pass with measurement results
+* callback - The application package and activity name divided with "/" symbol, to pass result data. ```com.welltory.dds.android/com.welltory.dds.android.MainActivity```, for example
+* other parameters - [optionally] list of parameters to pass with measurement results. If you want to pass your own parameters to the measurement result, you should add them as query parameters to the URI
 
 `Important: we DON’T save parameters in a database`\
 `Important: Activity should have android:exported=”true” configuration`
 
-Example: [welltory://branch/Measurement/Start/source%3DDemoApp%26callback%3Dcom.welltory.dds.android%2Fcom.welltory.dds.android.MainActivity%26param1%3Dtest_param1](#)
+Example: [welltory://branch/Measurement/Start/source%3DYourApp%26callback%3Dcom.welltory.dds.android%2Fcom.welltory.dds.android.MainActivity%26param1%3Dtest_param1](#)
 
 `Important: Execute Intent with  FLAG_ACTIVITY_NEW_TASK and FLAG_ACTIVITY_CLEAR_TOP flags, to avoid a duplication of partner’s application instances.`
 
@@ -153,7 +141,7 @@ Examples:
 String callBackActivity = String.format(Locale.getDefault(), "%s/%s",
        activity.getPackageName(), activity.getClass().getName());
 String params = String.format(Locale.getDefault(),
-       "source=%s&callback=%s&param1=test_param1", "DemoApp", callBackActivity);
+       "source=%s&callback=%s&param1=test_param1", "YourApp", callBackActivity);
 Intent intent = null;
 try {
    String encodedParams = URLEncoder.encode(params, "UTF-8");
@@ -175,8 +163,8 @@ if (intent != null) {
 
 # Stress results overview <a name="result"></a>
 
-After the user data has been processed, Welltory application it will use your **callback** url to send measurement results to your application.
-Welltory will append the following parameters to your callback url:
+After the user data has been processed, Welltory application will use your **callback** activity to send measurement results to your application.
+Welltory will put the following parameters into intent extras:
 
 
 | name | type | description |
@@ -191,6 +179,7 @@ Welltory will append the following parameters to your callback url:
 | productivity_c | String | Productivity parameter interpretation color |
 | energy_c | String | Energy parameter interpretation color |
 | stress_c | String | Stress parameter interpretation color |
+| other parameters | String | Your custom parameters with keys and values you passed with URI
 
 Colours:
 * green - Good
@@ -231,7 +220,7 @@ This repository contains a working Demo DDS application.
 
 
 # Questions? <a name="questions"></a>
-If you have questions about the partnership, please visit our help center [Welltory Help Center](https://support.welltory.com/content).
+If you have questions about the partnership, send us a live chat message [on our website](https://welltory.com/)
 
 # License and author info <a name="license"></a>
 
@@ -240,7 +229,7 @@ Welltory Integration Android Example
 
 The MIT License (MIT)
 
-Copyright (c) 2019 Welltory Integration iOS Demo
+Copyright (c) 2019 Welltory Integration Android
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
