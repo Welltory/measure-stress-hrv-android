@@ -4,29 +4,26 @@
   <img src="/screens/Frame.jpg?raw=true" alt="Welltory flow">
 </p>
 
-This demo app is intended for people who want to integrate with Welltory app to collect stress, energy and other HRV data about their users.
-Demo app shows how your app can work with Welltory app.
-This integration is free and it’s created to help you add value for your users who use Welltory. [Read more here](#install)
+This demo app is intended for people who want to integrate with Welltory app to collect stress, energy and other HRV data about their users. The Demo app demonstrates how your app can work with Welltory. This integration is free and it’s created to help you add value for your users who already use Welltory.  [Read more here](#install)
 
-To become integration partner - [apply here](https://welltory.typeform.com/to/epJ3PR)
+To become an integration partner - [apply here](https://welltory.typeform.com/to/epJ3PR)
 
 
-Welltory is an app that measures people’s HRV with just a smartphone camera to calculate their stress and energy levels. You can send out users to our app and get them back with measurement results.
-Welltory integration will allow you to collect data of the following parameters:
+Welltory is an app that measures people’s HRV with just a smartphone camera to calculate their stress and energy levels. You can redirect users to our app and direct them back to your app with measurement results. Welltory integration will allow you to collect data of the following parameters:
 
-* Stress (Welltory's proprietary algorithm, trained on millions of measurements)
-* Energy (Welltory's proprietary algorithm, trained on millions of measurements)
-* Productivity index (Welltory's proprietary algorithm, trained on millions of measurements)
+* Stress (Welltory's proprietary algorithm trained on millions of measurements)
+* Energy (Welltory's proprietary algorithm trained on millions of measurements)
+* Productivity index (Welltory's proprietary algorithm trained on millions of measurements)
 * RMSSD index
 * SDNN index
 * Total power
 
-We made this demo to show you:
-* how the user will be navigated to the App Store,
-* the process of taking a measurement,
-* a request for sharing,
-* the return to the application,
-* an example of the presentation of the results,
+This demo is to demonstrate:
+* how the user is navigated from your app to the App Store,
+* how the measurement is taken,
+* a request asking the user to share the results of the measurement with your app,
+* the return to your application,
+* a sample of results presentation,
 and also the source code of the integration.
 
 Continue reading for installation.
@@ -90,7 +87,7 @@ Welltory doesn't provide any integration SDKs, all applications interaction are 
 
 **You should start your integration filling out an [Integration Request Form](https://welltory.typeform.com/to/epJ3PR).**
 
-Please contact our support team if you have any questions [Welltory Help Center](https://support.welltory.com/content).
+Please send us a live chat message [on our website](https://welltory.com/) if you have any questions.
 
 
 # Measurement request <a name="request"></a>
@@ -117,7 +114,7 @@ Where the **referrer** contains:
 It will take the user to the measurement screen in case Welltory is installed, or redirect them to Google Play page to install it.
 
 Example:
-[https://play.google.com/store/apps/details?id=com.welltory.client.android&referrer=source%3DDemoApp%26callback%3Dcom.welltory.dds.android%2Fcom.welltory.dds.android.MainActivity%26param1%3Dtest_param1](#)
+[https://play.google.com/store/apps/details?id=com.welltory.client.android&referrer=source%3DYourApp%26callback%3Dcom.welltory.dds.android%2Fcom.welltory.dds.android.MainActivity%26param1%3Dtest_param1](#)
 
 --------
 
@@ -133,7 +130,7 @@ Where the **utf_8_encoded_params** contains:
 `Important: we DON’T save parameters in a database`\
 `Important: Activity should have android:exported=”true” configuration`
 
-Example: [welltory://branch/Measurement/Start/source%3DDemoApp%26callback%3Dcom.welltory.dds.android%2Fcom.welltory.dds.android.MainActivity%26param1%3Dtest_param1](#)
+Example: [welltory://branch/Measurement/Start/source%3DYourApp%26callback%3Dcom.welltory.dds.android%2Fcom.welltory.dds.android.MainActivity%26param1%3Dtest_param1](#)
 
 `Important: Execute Intent with  FLAG_ACTIVITY_NEW_TASK and FLAG_ACTIVITY_CLEAR_TOP flags, to avoid a duplication of partner’s application instances.`
 
@@ -144,7 +141,7 @@ Examples:
 String callBackActivity = String.format(Locale.getDefault(), "%s/%s",
        activity.getPackageName(), activity.getClass().getName());
 String params = String.format(Locale.getDefault(),
-       "source=%s&callback=%s&param1=test_param1", "DemoApp", callBackActivity);
+       "source=%s&callback=%s&param1=test_param1", "YourApp", callBackActivity);
 Intent intent = null;
 try {
    String encodedParams = URLEncoder.encode(params, "UTF-8");
@@ -223,7 +220,7 @@ This repository contains a working Demo DDS application.
 
 
 # Questions? <a name="questions"></a>
-If you have questions about the partnership, please visit our help center [Welltory Help Center](https://support.welltory.com/content).
+If you have questions about the partnership, send us a live chat message [on our website](https://welltory.com/)
 
 # License and author info <a name="license"></a>
 
