@@ -54,7 +54,7 @@ No additional tools required.
 
 ### Installation guide: <a name="guide"></a>
 
-* Clone the repository master brunch using ``` git clone https://github.com/Welltory/Android-DDS-Example.git ```
+* Clone the repository master brunch using ``` git clone https://github.com/Welltory/measure-stress-hrv-android.git ```
 * Open project directory with the Android Studio 3.5+
 * Run the project
 
