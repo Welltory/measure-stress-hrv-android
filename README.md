@@ -36,6 +36,7 @@ Continue reading for installation.
 3. [Integration](#integration)
 4. [Measurement request](#request)
    1. [Measurement request link and parameters](#link)
+   2. [Package visibility](#package_visibility)
 5. [Stress results overview](#result)
    1. [Configure your app to add it the list of approved domains](#configure_domain)
    2. [Configure your website to host the 'apple-app-site-association' file](#configure_aasa)
@@ -96,6 +97,18 @@ To start a measurement you should send URI intent
 
 Important: The intent link changes depending on whether Welltory is installed or not.
 
+### Package visibility <a name="package_visibility"></a>
+https://developer.android.com/training/package-visibility
+
+For apps with **targetSdkVersion** >= 30 you should add the following code to AndroidManifest.xml:
+```java
+<queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="welltory" />
+        </intent>
+</queries>
+```
 
 ### Measurement request link <a name="link"></a>
 
